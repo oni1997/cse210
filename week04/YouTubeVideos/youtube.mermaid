@@ -1,0 +1,24 @@
+classDiagram
+    class Comment {
+        - string CommenterName
+        - string CommentText
+        + Comment(string commenterName, string commentText)
+    }
+
+    class Video {
+        - string Title
+        - string Author
+        - int Length
+        - List~Comment~ Comments
+        + Video(string title, string author, int length)
+        + void AddComment(Comment comment)
+        + int GetNumberOfComments()
+        + void DisplayComments()
+    }
+
+    class Program {
+        + Main(string[] args)
+    }
+
+    Video "1" -- "many" Comment : has
+    Program --> Video : uses

@@ -1,0 +1,40 @@
+classDiagram
+    class Product {
+        -string name
+        -string productId
+        -double price
+        -int quantity
+        +Product(name, productId, price, quantity)
+        +double ComputeTotalCost()
+    }
+    
+    class Customer {
+        -string name
+        -Address address
+        +Customer(name, address)
+        +bool IsInUSA()
+    }
+    
+    class Address {
+        -string streetAddress
+        -string city
+        -string stateProvince
+        -string country
+        +Address(streetAddress, city, stateProvince, country)
+        +bool IsInUSA()
+        +string GetAddressString()
+    }
+    
+    class Order {
+        -List~Product~ products
+        -Customer customer
+        +Order(customer)
+        +AddProduct(product : Product)
+        +double ComputeTotalPrice()
+        +string GetPackingLabel()
+        +string GetShippingLabel()
+    }
+    
+    Order "1" *-- "0..*" Product : contains products
+    Order "1" *-- "1" Customer : has a customer
+    Customer "1" *-- "1" Address : has an address
